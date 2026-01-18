@@ -1,8 +1,24 @@
-import connectDb from "./db/index.js";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env from the root directory (one level up from src)
+dotenv.config({ path: path.join(__dirname, "../.env") });
+
+// DEBUG: Check if env vars are loaded
+console.log("=== Environment Variables Check ===");
+console.log("CLOUDINARY_CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
+console.log("CLOUDINARY_API_KEY:", process.env.CLOUDINARY_API_KEY);
+console.log("CLOUDINARY_API_SECRET:", process.env.CLOUDINARY_API_SECRET);
+console.log("PORT:", process.env.PORT);
+console.log("===================================");
+import connectDb from "./db/index.js";
 import { app } from "./app.js";
 
-dotenv.config({ path: ".env" });
+
 connectDb()
 .then(()=>{
   app.listen(process.env.PORT || 8000, ()=>{
