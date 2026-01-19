@@ -1,12 +1,7 @@
 import dotenv from "dotenv";
-import path from "path";
-import { fileURLToPath } from "url";
+dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
-// Load .env from the root directory (one level up from src)
-dotenv.config({ path: path.join(__dirname, "../.env") });
 
 // DEBUG: Check if env vars are loaded
 console.log("=== Environment Variables Check ===");
